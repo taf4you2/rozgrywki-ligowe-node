@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend setup for league management built with clean Node.js, TypeScript and PostgreSQL.",
+  "main": "dist/src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/src/server.js",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint eslint.config.mjs && npm run typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@types/pg": "^8.20.0",
+    "eslint": "^10.7.0",
+    "prettier": "^3.9.5",
+    "tsx": "^4.23.1",
+    "typescript": "^7.0.2"
+  }
+}
