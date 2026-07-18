@@ -1,6 +1,8 @@
 import { randomUUID } from 'node:crypto';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 
+import { query } from './db/query.js';
+
 // Zwalidowana konfiguracja aplikacji.
 import { env } from './config/env.js';
 
@@ -29,6 +31,18 @@ router.get('/api/v1/health', ({ res }) => {
   sendJson(res, {
     status: 'ok',
     environment: env.NODE_ENV,
+    timestamp: new Date().toISOString(),
+  });
+});
+
+
+// Healthcheck sprawdzajacy polaczenie z baza danych.
+router.get('/api/v1/health/database', async ({ res }) => {
+  await query('SELECT 1');
+
+  sendJson(res, {
+    status: 'ok',
+    database: 'connected',
     timestamp: new Date().toISOString(),
   });
 });
