@@ -11,10 +11,15 @@ import { Router } from './http/router.js';
 
 // Funkcje pomocnicze do wysylania odpowiedzi JSON i bledow w jednolitym formacie.
 import { sendError, sendJson } from './http/json.js';
+import { registerClubRoutes } from './modules/clubs/controller.js';
 
 // Tworzy jedna instancje routera dla calej aplikacji.
 // Moduly beda rejestrowac tutaj swoje trasy.
 const router = new Router();
+
+// Funkcja dodaje endpointy klubów do wspólnej instancji routera.
+// Rejestruje je podczas uruchamiania aplikacji, zanim serwer zacznie obsługiwać żądania.
+registerClubRoutes(router);
 
 // Prosty healthcheck bez prefiksu API.
 // Taka trasa jest wygodna dla Dockera, load balancera albo szybkiego sprawdzenia lokalnie.
