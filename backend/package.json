@@ -12,7 +12,7 @@
     "lint": "eslint eslint.config.mjs && npm run typecheck",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "node --test"
+    "test": "tsx --test test/*.test.ts"
   },
   "keywords": [],
   "author": "",

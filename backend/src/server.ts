@@ -11,7 +11,12 @@ import { Router } from './http/router.js';
 
 // Funkcje pomocnicze do wysylania odpowiedzi JSON i bledow w jednolitym formacie.
 import { sendError, sendJson } from './http/json.js';
+import { registerAppearanceRoutes } from './modules/appearances/controller.js';
 import { registerClubRoutes } from './modules/clubs/controller.js';
+import { registerGoalRoutes } from './modules/goals/controller.js';
+import { registerMatchRoutes } from './modules/matches/controller.js';
+import { registerPlayerRoutes } from './modules/players/controller.js';
+import { registerStatsRoutes } from './modules/stats/controller.js';
 
 // Tworzy jedna instancje routera dla calej aplikacji.
 // Moduly beda rejestrowac tutaj swoje trasy.
@@ -20,6 +25,21 @@ const router = new Router();
 // Funkcja dodaje endpointy klubów do wspólnej instancji routera.
 // Rejestruje je podczas uruchamiania aplikacji, zanim serwer zacznie obsługiwać żądania.
 registerClubRoutes(router);
+
+// Funkcja dodaje endpointy zawodników do wspólnej instancji routera.
+registerPlayerRoutes(router);
+
+// Funkcja dodaje endpointy meczów do wspólnej instancji routera.
+registerMatchRoutes(router);
+
+// Funkcja dodaje endpointy występów do wspólnej instancji routera.
+registerAppearanceRoutes(router);
+
+// Funkcja dodaje endpointy bramek do wspólnej instancji routera.
+registerGoalRoutes(router);
+
+// Funkcja dodaje endpointy statystyk do wspólnej instancji routera.
+registerStatsRoutes(router);
 
 // Prosty healthcheck bez prefiksu API.
 // Taka trasa jest wygodna dla Dockera, load balancera albo szybkiego sprawdzenia lokalnie.
